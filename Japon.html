@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!--Logo de la página-->      
+    <header>
+        <div class="logo">
+            <a href="index.html" style="cursor: pointer">
+                <img src="./img/logo.png" alt="atlas">
+            </a>
+        </div>
+    </header>  
+
+    <!--Menú desplegable--> 
+    <div class="topnav">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div id="myLinks">
+            <a href="PedirDomicilio.html">Reservar</a>
+            <a href="Juego.html">Ver cartas</a>
+            <a href="Contacto.html">Contacto</a>
+            <a href="AcercaDe.html">Sobre nosotros</a>
+        </div>
+    </div>
+
+    <!--Video de fondo-->
+    <div class="video-container">
+        <video autoplay muted loop>
+            <source src="./video/japon.mp4" type="video/mp4">
+        </video>
+    </div>
+    <!--Estructura central de la página-->
+    <p class="titulos-ciudades">Japón</p>
+    
+    <div class="opciones">
+        <div id="audioInfo">
+            <p id="duration">Duración total: 0</p>
+            <p id="remainingTime">Tiempo restante: 0</p>
+            <p id="currentFile">Fichero: hope.mp3</p>
+            <p id="status">Estado: Pausado</p>
+        </div>
+        <select id="songSelect" onchange="changeSong()">
+            <option value="./video/hope.mp3">Hope</option>
+            <option value="./video/viaje.mp3">Viaje</option>
+            <option value="./video/verano.mp3">Verano</option>
+        </select>
+        <audio id="audioPlayer" controls>
+            <source id="audioSource" src="./video/hope.mp3" type="audio/mp3">
+            Tu navegador no soporta el elemento de audio.
+        </audio>   
+    </div>
+    <div class="grid">
+        <div class="grid-comida">
+            <img src = "./img/japon/yozas.jpg"> 
+            <h2>Yozas</h2>
+        </div>
+        <div class="grid-comida">
+            <img src = "./img/japon/ramen.jpg"> 
+            <h2>Ramen</h2>
+        </div>
+        <div class="grid-comida">
+            <img src = "./img/japon/pollo.jpg"> 
+            <h2>Pollo</h2>
+        </div>
+        <div class="grid-comida">
+            <img src = "./img/japon/postre.jpg"> 
+            <h2>Postre</h2>
+        </div>
+        <div class="grid-comida">
+            <img src = "./img/japon/mochi.jpg"> 
+            <h2>Mochi</h2>
+        </div>
+        <div class="grid-comida">
+            <img src = "./img/japon/dorayaki.jpg">
+            <h2>Dorayaki</h2>
+        </div>
+    </div>
+    
+    <!--Pie de página-->
+    <footer>
+        <div class="contenedor">
+            <div class="creditos">
+                <div class="section">
+                    <h3>EXPERIENCIA</h3>
+                    <ul>
+                        <li><a href = "PedirDomicilio.html">Reservar</a></li>
+                        <li><a href = "Juego.html">Ver cartas</a></li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>CONTACTA</h3>
+                    <ul>
+                        <a href="https://www.instagram.com/" style="cursor: pointer">
+                            <img class="redes" src="./img/insta.avif" alt="Instagram">
+                        </a>
+                        <a href="https://twitter.com/?lang=es" style="cursor: pointer">
+                            <img class="redes" src="./img/x.avif" alt="Twitter">
+                        </a>
+                        <a href="https://www.facebook.com/?locale=es_ES" style="cursor: pointer">
+                            <img class="redes" src="./img/facebook.png" alt="Facebook">
+                        </a>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>MÁS INFORMACIÓN</h3>
+                    <ul>
+                        <li><a href="Contacto.html">Ubicaciones y horarios</a></li>
+                        <li><a href="Preguntas.html">Preguntas frecuentes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+
+<script>
+    // Función para cambiar la canción
+    function changeSong() {
+        var audioPlayer = document.getElementById('audioPlayer');
+        var audioSource = document.getElementById('audioSource');
+        var songSelect = document.getElementById('songSelect');
+        var selectedSong = songSelect.value;
+
+        // Cambiar la fuente del audio
+        audioSource.src = selectedSong;
+        audioPlayer.load();  // Recargar el audio con la nueva fuente
+
+        // Actualizar el nombre del archivo que se está reproduciendo
+        document.getElementById('currentFile').innerText = "Fichero: " + selectedSong.split('/').pop();
+
+        // Reproducir la canción
+        audioPlayer.play();
+    }
+
+    // Función para actualizar la información durante la reproducción
+    document.getElementById('audioPlayer').addEventListener('loadeddata', function() {
+        var audioPlayer = document.getElementById('audioPlayer');
+        var duration = audioPlayer.duration;
+        document.getElementById('duration').innerText = "Duración total: " + formatTime(duration);
+    });
+
+    // Función para actualizar el tiempo restante y el estado de la reproducción
+    document.getElementById('audioPlayer').addEventListener('timeupdate', function() {
+        var audioPlayer = document.getElementById('audioPlayer');
+        var remainingTime = audioPlayer.duration - audioPlayer.currentTime;
+        document.getElementById('remainingTime').innerText = "Tiempo restante: " + formatTime(remainingTime);
+
+        // Actualizar el estado de la reproducción
+        if (audioPlayer.paused) {
+            document.getElementById('status').innerText = "Estado: Pausado";
+        } else if (audioPlayer.ended) {
+            document.getElementById('status').innerText = "Estado: Finalizado";
+        } else {
+            document.getElementById('status').innerText = "Estado: Iniciado";
+        }
+    });
+
+    // Función para formatear el tiempo en minutos:segundos
+    function formatTime(seconds) {
+        var minutes = Math.floor(seconds / 60);
+        var remainingSeconds = Math.floor(seconds % 60);
+        if (remainingSeconds < 10) {
+            remainingSeconds = "0" + remainingSeconds;
+        }
+        return minutes + ":" + remainingSeconds;
+    }
+</script>
+</body>

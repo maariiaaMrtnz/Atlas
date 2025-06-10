@@ -1,0 +1,660 @@
+/*FUENTES*/
+@font-face {
+    font-family: 'Flamenco';
+    src: url('/fonts/Flamenco/Flamenco/Flamenco-Regular.ttf');
+}
+
+/* Logo de la pagina */
+.logo {
+	position: relative;
+	width: 220px;
+	margin: 1rem auto;
+	z-index: 99999;
+	
+}
+.logo img {
+	text-align: left;
+	margin-top: 0.5rem;
+	max-width: 100%;
+}
+
+/* Estilos de la pagina */
+body {
+	overflow: auto;
+	background-image: url('./img/fondo2.jpg');
+	background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Menú de la pagina */
+.topnav a {
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	margin: 0 1rem;
+}
+.topnav a.icon {
+    position: relative;
+    font-size: 25px;
+    color: white;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+.topnav #myLinks {
+    display: none;
+    position: absolute;
+    top: 122px; 
+	left: 50px;
+}
+
+/* Video de fondo de la página index */
+.videos {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: -1; 
+}
+.video-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: -1; 
+}
+
+/* Títulos de H1 */
+h1 {
+    text-align: center;
+	margin-top: 100px;
+    font-size: 40px;
+	color: white !important;
+}	
+
+/* Títulos de H2 */
+h2 {
+	text-align: center;
+	font-size: 300px;
+	color: white;
+	margin-top: 90px;
+	font-family: 'Flamenco';
+}
+.titulos-ciudades {
+	text-align: center;
+	font-size: 300px;
+	color: white;
+	margin-top: 90px;
+	margin-bottom: 210px;
+	font-family: 'Flamenco';
+}
+p {
+	text-align: justify;
+}
+
+/* Menú enlaces de la página index */
+.menu {
+	list-style: none;
+}
+.menu ul li a {
+	text-decoration: none;
+	color: white !important;
+	display: block;
+    font-size: 20px;
+}
+.menu ul li {
+	text-align: center;
+	list-style-type: none;
+	transform: translateX(-100px);
+    animation: aparecer 0.5s ease-out forwards;
+}
+.menu li a:hover {
+	color: wheat !important;
+}
+
+ /* Animación: cada elemento aparece con retraso */
+ .lista li:nth-child(1) { animation-delay: 0.8s; }
+ .lista li:nth-child(2) { animation-delay: 0.9s; }
+
+ @keyframes aparecer {
+	 from {
+		 opacity: 0;
+		 transform: translateX(-100px);
+	 }
+	 to {
+		 opacity: 1;
+		 transform: translateX(0);
+	 }
+ }
+
+/* Contenedor para estilos las fotos de los restaurantes */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    padding: 20px; 
+	
+}
+.grid-item {
+    text-align: center; 
+}
+.grid-item img {
+    width: 100%; 
+    height: 70%; 
+    border-radius: 10px; 
+}
+.grid-item h2 {
+	color: white;
+	font-size: 20px;
+	margin-top: 10px;
+} 
+.grid-item p {
+    margin-top: 10px; 
+    color: white;
+    font-size: 16px; 
+}
+
+/* Contenedor para estilos las fotos de la comida */
+.grid {
+	margin-top: 400px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    padding: 20px; 
+	margin-top: 700px
+}
+.grid-comida {
+    text-align: center; 
+}
+.grid-comida img{
+	width: 70%; 
+    height: 70%; 
+    border-radius: 10px;
+}
+.grid-comida h2 {
+	color: white;
+	font-size: 20px;
+	margin-top: 10px; 
+} 
+
+/* Estilos de contacto */
+.contacto {
+	padding: 10px;
+	background-color: #333;
+	border-radius: 10px;
+	margin: 40px;
+	text-align: center;
+
+}
+.contacto h2 {
+	text-align: center;
+	font-size: 40px;
+	color: white;
+	font-weight: bold;
+}
+.contacto p {
+	text-align: center;
+	font-size: 20px;
+	color: white;
+}
+.contacto form {
+	max-width: 600px;
+	margin: 0 auto;
+	color: white;
+}
+.contacto label {
+	display: block;
+	margin-bottom: 5px;
+}
+.contacto input[type="text"],
+.contacto input[type="email"],
+.contacto textarea {
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 10px;
+	box-sizing: border-box;
+}
+.contacto textarea {
+	height: 200px;
+}
+.contacto input[type="submit"]{
+	background-color: #333;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+.contacto input[type="submit"]:hover {
+	background-color: #333;
+}
+
+/* Mapa de localización de contacto */
+.map-container {
+	display: flex;
+	margin-top: 50px;
+	justify-content: center;
+	background-color: #333;
+	margin: 40px;
+	padding: 20px;
+	border-radius: 10px;
+	height: 400px;
+}
+#map { 
+	height: 400px; 
+	width: 50%; 
+}
+
+/* Estilos de las imagenes de acerca de */
+.imagenes {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.imagenes img {
+	max-width: 100%;
+	max-height: 300px;
+	margin-bottom: 10px;
+}
+
+/* Estilos de las preguntas frecuentes */
+.pregunta h3 {
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+/* Estilos de los créditos */
+.contenedor {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    margin: 10px;
+    text-align: center;
+    bottom: 0; 
+    width: 99%; 
+	border-radius: 10px;
+}
+.creditos {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 20px;
+}
+.section {
+	margin-bottom: 20px;
+}
+.section h3 {
+	font-weight: bold;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.section ul {
+	list-style: none;
+	padding: 0;
+}
+.section ul li {
+	margin-bottom: 10px;
+}
+
+/* Enlaces en los créditos */
+a {
+	color: white !important;
+	text-decoration: none !important;
+}
+a:hover {
+	color: wheat !important;
+}
+
+/* Tamaño con el que se muestra las redes */
+.redes {
+	max-width: 15%;
+}
+
+/* Estilos para el formulario de reserva */
+.reserva {
+    padding: 10px;
+    background-color: #333;
+    border-radius: 10px;
+    margin: 25px auto;
+    text-align: center;
+    max-width: 400px;
+	
+}
+.reserva label {
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+}
+.reserva select, .reserva input {
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    border: none;
+}
+.personas-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 25px;
+    width: 80%;
+    margin: auto;
+    padding: 5px;
+}
+.personas-container input {
+    width: 50px;
+    border: none;
+    text-align: center;
+    font-size: 20px;
+    background-color: transparent;
+    font-family: 'Times New Roman', Times, serif;
+    outline: none;
+}
+.reserva button{
+	margin: 15px;
+	padding:15px;
+	width: 50%;
+	font-family: 'Times New Roman', Times, serif;
+	text-align: center;
+    font-size: 20px;
+	border-radius: 25px;
+}
+.reserva button:hover {
+	background-color: black;
+	color: white;
+}
+
+/* Estilos de los botones */
+.botones {
+	background-color: white;
+	color: black;
+	border: none;
+	padding: 10px;
+	margin: 5px;
+	cursor: pointer;
+	border-radius: 100px;
+	display: block;
+    margin: 0 auto;
+	font-weight: bold;
+}
+.botones:hover {
+	background-color: black;
+	color:white;
+}
+
+/*AUDIO*/
+
+.opciones{
+    display: flex;
+    align-items: center; 
+    gap: 20px; 
+	margin-left: 25px;
+}
+
+/* Estilizando el contenedor del select */
+#songSelect {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: black;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 35px; 
+    background-color: white;
+    width: 100px; 
+    height: 42px; 
+    text-align: center;
+    cursor: pointer;
+    appearance: none; /* Elimina la flecha predeterminada */
+    outline: none;
+    position: relative;
+}
+
+/* Estilo al pasar el ratón sobre el select */
+#songSelect:hover {
+    border-color: black;
+}
+
+/* Estilizando las opciones */
+#songSelect option {
+    padding: 25px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Estilo al hacer clic en una opción */
+#songSelect:focus {
+    border-color: #ffffff;
+    background-color: #e0f0ff;
+}
+
+/* Estilizando el reproductor de audio */
+audio {
+    height: 50px;
+    transition: clip-path 0.3s ease-in-out;
+    clip-path: circle(20px at 25px 25px); 
+}
+
+audio:hover {
+    clip-path: inset(0 0 0 0); 
+    width: 350px;
+}
+
+#audioInfo {
+	margin-top: 20px;
+	text-align: left;
+	background-color: white;
+	padding: 5px;
+	border-radius: 5px;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#audioInfo p {
+	font-size: 12px;
+	margin: 5px 0;
+	color: black;
+}
+
+#audioInfo p#duration,
+#audioInfo p#remainingTime {
+	font-weight: bold;
+}
+
+#audioInfo p#status {
+	font-style: italic;
+	color: blue;
+}
+
+
+/* Estilizando el contenedor del select */
+.footer{
+	margin-top:400px;
+}
+
+
+/*Reproductor de video*/
+#video {
+	justify-content: center;
+	align-items: center;
+	margin: 25px;
+	border: 5px solid black;
+	transition: all 0.3s ease;
+	width: 80%;
+}
+
+.controls {
+	margin-top: 10px;
+}
+.btnVideo {
+	background-color: white;
+	color: black;
+	border: none;
+	padding: 10px;
+	margin: 5px;
+	cursor: pointer;
+	border-radius: 100px;
+}
+.btnVideo:hover {
+	background-color: black;
+	color:white;
+}
+
+#progressContainer {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    background-color: #ddd;
+    height: 10px;
+    margin: 10px auto;
+    position: relative;
+    border-radius: 5px;
+    padding: 5px;
+    justify-content: space-between;
+}
+#progressBarContainer {
+    flex: 1;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background-color: #007BFF;
+    border-radius: 5px;
+    flex-grow: 1;
+    margin: 0 10px;
+}
+
+#currentTime, #totalTime {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/*Estilo del juego*/
+canvas {
+	display: block;
+	background-color: #70c5ce;
+}
+.contenedor-juego {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw; /* Ocupar todo el ancho de la ventana */
+    height: 80vh; /* Ocupar el 80% de la altura de la pantalla */
+}
+
+@media (max-width: 768px) {
+	.creditos {
+		margin-right: 30px;
+		grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas medianas */
+	}
+	.grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.grid-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.map-container {
+		height: 200px; 
+		width: 250px; 
+	}
+	#map { 
+		height: 200px; 
+		width: 500px; 
+	}
+	.titulos-ciudades {
+        font-size: 15vw; /* Ajusta el tamaño para pantallas más pequeñas */
+        margin-top: 50px; /* Ajusta los márgenes para pantallas pequeñas */
+        margin-bottom: 100px;
+    }
+
+	.opciones {
+        gap: 5px; /* Reduce el espacio entre los elementos */
+    }
+
+    #songSelect {
+        font-size: 12px;
+        width: 100px; /* Reduce el tamaño del select */
+    }
+
+
+
+    #audioInfo {
+        width: 180px; /* Reduce el tamaño del contenedor de info */
+    }
+
+    #audioInfo p {
+        font-size: 10px; /* Reduce el tamaño del texto */
+    }
+}
+
+@media (max-width: 480px) {
+	.creditos {
+		margin-right: 30px;
+		grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+	}
+	.grid {
+		grid-template-columns: 1fr;
+
+	}
+	.grid-container {
+		grid-template-columns: 1fr;
+	}
+	.titulos-ciudades {
+        font-size: 20vw; /* Ajusta aún más el tamaño en pantallas muy pequeñas */
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+
+	#songSelect {
+        font-size: 10px; /* Aumenta la legibilidad en pantallas muy pequeñas */
+        width: 80px; /* Reduce aún más el tamaño */
+    }
+
+    #audioInfo {
+        width: 160px; /* Reduce aún más el tamaño del contenedor de info */
+    }
+
+    #audioInfo p {
+        font-size: 9px; /* Reduce aún más el tamaño del texto */
+    }
+}
+
+/* Estilos de la gráfica de valoraciones */
+.bar {
+    transition: fill 0.2s;
+}
+.tooltip {
+	position: absolute;
+	background-color: white;
+	border: 1px solid #aaa;
+	padding: 6px;  
+	font-size: 14px;
+	pointer-events: none;
+	opacity: 0;
+}
+.axis-label {
+    font-weight: bold;
+	fill: white;
+}
+.axis path,
+.axis line,
+.axis text {
+	fill: white;
+}

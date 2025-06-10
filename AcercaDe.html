@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <!--Logo de la página-->
+    <header>
+        <div class="logo">
+            <a href="index.html" style="cursor: pointer">
+                <img src="./img/logo.png" alt="atlas">
+            </a>
+        </div>
+    </header>
+            
+    <!--Menú desplegable-->
+    <div class="topnav">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div id="myLinks">
+            <a href="PedirDomicilio.html">Reservar</a>
+            <a href="Juego.html">Ver cartas</a>
+            <a href="Contacto.html">Contacto</a>
+            <a href="AcercaDe.html">Sobre nosotros</a>
+        </div>
+    </div>
+    <!--Estructura central de la página-->
+    <div class="contacto">
+        <div class="texto">
+          <h2>Nuestra empresa</h2><br>
+          <p>En "Atlas", nos enorgullece ofrecer una experiencia única que te lleva a los rincones más deliciosos del mundo. Nuestra cadena de restaurantes, con sede en las principales ciudades, te invita a disfrutar de auténticos sabores internacionales en un solo lugar. Cada plato es una invitación a viajar sin salir de tu mesa.</p>
+          <p>Con más de 15 años de experiencia, nos hemos consolidado como la opción preferida para aquellos que desean explorar la gastronomía global. Nuestro equipo está compuesto por chefs expertos que fusionan ingredientes frescos y tradicionales para crear una experiencia culinaria memorable.</p>
+        </div>
+        <div class="imagenes">
+            <div style="text-align:center"> 
+                <video id="video" width="420">
+                  <source src="./video/atlas.mp4" type="video/mp4">
+                </video>
+                <div id="progressContainer" onclick="seekVideo(event)">
+                    <span id="currentTime">0:00</span>
+                    <div id="progressBarContainer">
+                        <div id="progressBar"></div>
+                    </div>
+                    <span id="totalTime">0:00</span>
+                </div>
+                
+                
+                <div class="controls">
+                    <button class="btnVideo" onclick="playVideo()"><i class="fa fa-play"></i></button>
+                    <button class="btnVideo" onclick="pauseVideo()"><i class="fa fa-pause"></i> </button>
+                    <button class="btnVideo" onclick="stopVideo()"><i class="fa fa-stop"></i> </button>
+                    <button class="btnVideo" onclick="fastForward()"><i class="fa fa-forward"></i> </button>
+                    <button class="btnVideo" onclick="toggleFullscreen()"><i class="fa fa-expand"></i> </button>
+                    <input type="range" id="volume" min="0" max="1" step="0.1" onchange="changeVolume()">
+                </div>
+                
+                
+                  
+        </div>
+          
+        <div class="texto">
+          <h2>Nuestra misión</h2><br>
+          <p>En "Atlas", nuestra misión es ofrecer una experiencia gastronómica que te transporte a diferentes culturas del mundo, todo a través de un menú cuidadosamente diseñado. Queremos que cada comida sea una aventura, un viaje sensorial que celebre la diversidad culinaria que existe a lo largo del planeta.</p>
+          <p>Además, nos comprometemos a operar de manera responsable, seleccionando proveedores locales de calidad y utilizando prácticas sostenibles para contribuir al bienestar del medio ambiente. Nuestro objetivo es no solo satisfacer tu paladar, sino también apoyar un futuro más saludable y responsable.</p>
+        </div>
+        <div class="imagenes">
+          <img src="./img/landingBg.jpg" alt="Imagen 2">
+        </div>
+
+        <div class="texto">
+          <h2>Nuestra inspiración</h2><br>
+          <p>En "Atlas", nos inspiramos en la diversidad cultural y la riqueza de las tradiciones gastronómicas de todo el mundo. Cada plato que servimos está diseñado para capturar la esencia de los sabores más auténticos, desde los aromas especiados de la India hasta la frescura mediterránea.</p>
+          <p>Nos apasiona compartir los sabores tradicionales y las innovaciones culinarias de cada región, adaptando recetas ancestrales a un contexto moderno sin perder su esencia. La naturaleza, las estaciones y las celebraciones son nuestra fuente constante de inspiración, creando menús que cuentan historias y unen a las personas.</p>
+        </div>
+        <div class="imagenes">
+          <img src="./img/viajes.jpg" alt="Imagen 3">
+        </div>          
+        
+        <div class="texto">
+          <a href="./html/Registro.html" style="cursor: pointer"><h2>Únete a Nosotros</h2></a>
+          <p>Te invitamos a formar parte de nuestra aventura gastronómica. En "Atlas", cada visita es una oportunidad de explorar nuevos sabores, descubrir culturas y disfrutar de experiencias únicas. ¡Déjanos ser parte de tu próximo viaje culinario sin tener que salir de la ciudad!</p><br>
+        </div>
+        <div class="imagenes">
+          <img src="./img/Atlas.png" alt="Imagen 4">
+        </div>           
+    </div>
+
+    <div class="texto">
+        <h2>Valoración</h2>
+        <svg width="800" height="400"></svg>
+        <div class="tooltip" id="tooltip"></div>
+    </div>
+    
+    <!--Pie de página-->
+    <footer>
+        <div class="contenedor">
+            <div class="creditos">
+                <div class="section">
+                    <h3>EXPERIENCIA</h3>
+                    <ul>
+                        <li><a href = "PedirDomicilio.html">Reservar</a></li>
+                        <li><a href = "Juego.html">Ver cartas</a></li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>CONTACTA</h3>
+                    <ul>
+                        <a href="https://www.instagram.com/" style="cursor: pointer">
+                            <img class="redes" src="./img/insta.avif" alt="Instagram">
+                        </a>
+                        <a href="https://twitter.com/?lang=es" style="cursor: pointer">
+                            <img class="redes" src="./img/x.avif" alt="Twitter">
+                        </a>
+                        <a href="https://www.facebook.com/?locale=es_ES" style="cursor: pointer">
+                            <img class="redes" src="./img/facebook.png" alt="Facebook">
+                        </a>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>MÁS INFORMACIÓN</h3>
+                    <ul>
+                        <li><a href="Contacto.html">Ubicaciones y horarios</a></li>
+                        <li><a href="Preguntas.html">Preguntas frecuentes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      function myFunction() {
+          var x = document.getElementById("myLinks");
+          if (x.style.display === "block") {
+              x.style.display = "none";
+          } else {
+              x.style.display = "block";
+          }
+      }
+    </script>
+    <script>
+         const video = document.getElementById("video");
+        const progressBar = document.getElementById("progressBar");
+        const currentTimeDisplay = document.getElementById("currentTime");
+        const totalTimeDisplay = document.getElementById("totalTime");
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        video.addEventListener("loadedmetadata", () => {
+            totalTimeDisplay.textContent = formatTime(video.duration);
+        });
+
+        video.addEventListener("timeupdate", () => {
+            const percentage = (video.currentTime / video.duration) * 100;
+            progressBar.style.width = percentage + "%";
+            currentTimeDisplay.textContent = formatTime(video.currentTime);
+        });
+
+        video.addEventListener("click", () => {
+            if (video.paused) {
+                playVideo();
+            } else {
+                pauseVideo();
+            }
+        });
+
+        function playVideo() {
+            video.play();
+            video.style.border = "5px solid green";
+        }
+
+        function pauseVideo() {
+            video.pause();
+            video.style.border = "5px solid orange";
+        }
+
+        function stopVideo() {
+            video.pause();
+            video.currentTime = 0;
+            video.style.border = "5px solid black";
+            progressBar.style.width = "0%";
+            currentTimeDisplay.textContent = "0:00";
+        }
+
+        function fastForward() {
+            video.currentTime += 5;
+        }
+
+        function changeVolume() {
+            video.volume = document.getElementById("volume").value;
+        }
+
+        function toggleFullscreen() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            }
+        }
+
+    </script>  
+
+    <script>
+    const svg = d3.select("svg");
+    const margin = { top: 40, right: 30, bottom: 80, left: 60 };
+    const width = +svg.attr("width") - margin.left - margin.right;
+    const height = +svg.attr("height") - margin.top - margin.bottom;
+
+    // Área del gráfico
+    const chart = svg.append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+    
+    // Guarda la referencia del tooltip que es donde se mostrarán los datos
+    const tooltip = d3.select("#tooltip");
+
+    // Cargar el archivo con los datos
+    d3.json("data.json").then(data => {
+      // Tipo de cocina
+      const x = d3.scaleBand()
+        .domain(data.map(d => d.tipo))
+        .range([0, width])
+        .padding(0.2);
+
+      // Escala de valoración 
+      const y = d3.scaleLinear()
+        .domain([0, 5]) 
+        .range([height, 0]);
+
+      // Color diferente a cada tipo de cocina
+      const color = d3.scaleOrdinal()
+        .domain(data.map(d => d.tipo))
+        .range(d3.schemeSet2);
+
+      // Crear el eje X con textos rotados para no solaparse
+      chart.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(d3.axisBottom(x))
+        .classed("axis", true)
+        .selectAll("text")
+        .attr("transform", "rotate(-30)")
+        .style("text-anchor", "end");
+
+      // Crear el eje Y
+      chart.append("g")
+        .call(d3.axisLeft(y))
+        .classed("axis", true);
+
+      // Crear barras con cada elemento del json
+      chart.selectAll(".bar")
+        .data(data)
+        .join("rect")
+        .attr("class", "bar")
+        .attr("x", d => x(d.tipo))
+        .attr("y", d => y(d.valoracion_media))
+        .attr("width", x.bandwidth())
+        .attr("height", d => height - y(d.valoracion_media))
+        .attr("fill", d => color(d.tipo))
+        .on("mouseover", (event, d) => {
+          tooltip.style("opacity", 1)
+                 .html(`<strong>${d.tipo}</strong><br/>Valoración: ${d.valoracion_media}`)
+                 .style("left", (event.pageX + 10) + "px")
+                 .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", () => {
+          tooltip.style("opacity", 0);
+        });
+
+      // Etiqueta eje Y
+      svg.append("text")
+      .attr("transform", `rotate(-90)`)
+      .attr("x", - (margin.top + height / 2))
+      .attr("y", 20)
+      .attr("text-anchor", "middle")
+      .attr("class", "axis-label")
+      .text("Valoración media");
+
+
+      // Etiqueta eje X
+      svg.append("text")
+        .attr("x", margin.left + width / 2)
+        .attr("y", height + margin.top + 60)
+        .attr("text-anchor", "middle")
+        .attr("class", "axis-label")
+        .text("Tipo de cocina");
+    });
+  </script>
+
+    </body>
+</html>

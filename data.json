@@ -1,0 +1,8 @@
+[
+  { "tipo": "Australiana", "valoracion_media": 4.5},
+  { "tipo": "Española", "valoracion_media": 4.8},
+  { "tipo": "Mexicana", "valoracion_media": 4.2},
+  { "tipo": "Japonesa", "valoracion_media": 3.9},
+  { "tipo": "Marroquí", "valoracion_media": 4.6},
+  { "tipo": "Griega", "valoracion_media": 4.9}
+]

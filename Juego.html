@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!--Logo de la página-->
+    <header>
+        <div class="logo">
+            <a href="index.html" style="cursor: pointer">
+                <img src="./img/logo.png" alt="atlas">
+            </a>
+        </div>
+    </header>
+                
+    <!--Menú desplegable-->
+    <div class="topnav">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div id="myLinks">
+            <a href="PedirDomicilio.html">Reservar</a>
+            <a href="Juego.html">Ver cartas</a>
+            <a href="Contacto.html">Contacto</a>
+            <a href="AcercaDe.html">Sobre nosotros</a>
+        </div>
+    </div>
+
+    <div class="contenedor">
+        <label>Nombre del Jugador:</label>
+        <input type="text" id="nombreJugador" placeholder="Escribe tu nombre">
+    
+        <label>Velocidad del Juego (0.5-5):</label>
+        <input type="range" id="velocidadJuego" min="1" max="5" step="1" value="1">
+    
+        <label>Color de las Tuberías:</label>
+        <input type="color" id="colorTuberias" value="#008000">
+    </div>   
+    
+    <button class="botones" id="btnIniciar">Iniciar Juego</button> 
+    
+    <!--Juego-->
+    <div class="contenedor-juego">
+        <canvas id="juego"></canvas>
+    </div>
+
+    <script src="juego.js"></script>
+
+    <button class="botones" type="submit" onclick="window.location.href='Restaurantes.html';">CONTINUAR</button>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

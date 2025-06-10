@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>      
+    <!--Logo de la página-->
+    <header>
+        <div class="logo">
+            <a href="index.html" style="cursor: pointer">
+                <img src="./img/logo.png" alt="atlas">
+            </a>
+        </div>
+    </header>  
+
+    <!--Menú desplegable-->
+    <div class="topnav">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div id="myLinks">
+            <a href="PedirDomicilio.html">Reservar</a>
+            <a href="Juego.html">Ver cartas</a>
+            <a href="Contacto.html">Contacto</a>
+            <a href="AcercaDe.html">Sobre nosotros</a>
+        </div>
+    </div>
+
+    <!--Estructura central de la página-->
+    <h1>Preguntas Frecuentes</h1>
+
+    <div class="contacto">
+        <div class="pregunta">
+            <h3>¿Cómo puedo hacer una reserva?</h3>
+            <p>Puedes realizar tu reserva a través de nuestra página web en la sección de reservas o llamando directamente a nuestro restaurante.</p>
+        </div>
+    </div>
+    <div class="contacto">
+        <div class="pregunta">
+            <h3>¿Qué métodos de pago aceptan?</h3>
+            <p>Aceptamos pagos con tarjeta de crédito, débito, transferencia bancaria y PayPal. También ofrecemos la opción de pago en efectivo en el restaurante.</p>
+        </div>
+    </div>
+    <div class="contacto">
+        <div class="pregunta">
+            <h3>¿Ofrecen opciones vegetarianas y veganas?</h3>
+            <p>Sí, contamos con una variedad de platillos vegetarianos y veganos preparados con ingredientes frescos y de calidad.</p>
+        </div>
+    </div>
+        
+    <div class="contacto">
+        <div class="pregunta">
+            <h3>¿Tienen servicio de entrega a domicilio?</h3>
+            <p>Sí, ofrecemos servicio de entrega a domicilio a través de nuestras plataformas aliadas. Puedes consultar la disponibilidad en tu zona en nuestra web.</p>
+        </div>
+    </div>
+        
+    <div class="contacto">
+        <div class="pregunta">
+            <h3>¿Se pueden organizar eventos privados en el restaurante?</h3>
+            <p>Sí, ponemos a tu disposición espacios privados para celebraciones, reuniones y eventos especiales. Contáctanos para más detalles.</p>
+        </div>
+    </div>
+    
+    <!--Pie de página-->
+    <footer>
+        <div class="contenedor">
+            <div class="creditos">
+                <div class="section">
+                    <h3>EXPERIENCIA</h3>
+                    <ul>
+                        <li><a href = "PedirDomicilio.html">Reservar</a></li>
+                        <li><a href = "Juego.html">Ver cartas</a></li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>CONTACTA</h3>
+                    <ul>
+                        <a href="https://www.instagram.com/" style="cursor: pointer">
+                            <img class="redes" src="./img/insta.avif" alt="Instagram">
+                        </a>
+                        <a href="https://twitter.com/?lang=es" style="cursor: pointer">
+                            <img class="redes" src="./img/x.avif" alt="Twitter">
+                        </a>
+                        <a href="https://www.facebook.com/?locale=es_ES" style="cursor: pointer">
+                            <img class="redes" src="./img/facebook.png" alt="Facebook">
+                        </a>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>MÁS INFORMACIÓN</h3>
+                    <ul>
+                        <li><a href="Contacto.html">Ubicaciones y horarios</a></li>
+                        <li><a href="Preguntas.html">Preguntas frecuentes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+</body>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html" style="cursor: pointer">
+                <img src="./img/logo.png" alt="atlas">
+            </a>
+        </div>
+    </header>
+                
+    <div class="topnav">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div id="myLinks">
+            <a href="PedirDomicilio.html">Reservar</a>
+            <a href="Juego.html">Ver cartas</a>
+            <a href="Contacto.html">Contacto</a>
+            <a href="AcercaDe.html">Sobre nosotros</a>
+        </div>
+    </div>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    
+        // Fondo de estrellas
+        const loader = new THREE.TextureLoader();
+        loader.load('./img/estrellas.jpg', function(texture) {
+            scene.background = texture;
+        });
+    
+        // Renderizador
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+    
+        // Tierra y nubes
+        const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
+        const textureLoader = new THREE.TextureLoader();
+        const earthTexture = textureLoader.load('./img/earthmap4k.jpg');
+        const cloudsTexture = textureLoader.load('./img/fair_clouds_4k.png');
+    
+        const earthMaterial = new THREE.MeshStandardMaterial({ map: earthTexture });
+        const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
+        earthMesh.name = 'earth';
+        scene.add(earthMesh);
+    
+        const cloudsMaterial = new THREE.MeshStandardMaterial({ map: cloudsTexture, transparent: true, opacity: 0.8 });
+        const cloudsMesh = new THREE.Mesh(sphereGeometry, cloudsMaterial);
+        cloudsMesh.scale.set(1.02, 1.02, 1.02);
+        cloudsMesh.name = 'clouds';
+        scene.add(cloudsMesh);
+    
+        const markers = [];
+    
+        const locations = [
+            { lat: 41, lon: -175, nombre: "espanya" },
+            { lat: -25, lon: 50, nombre: "australia" },
+            { lat: 25, lon: -75, nombre: "mexico" },
+            { lat: 41, lon: -195, nombre: "grecia" },
+            { lat: 29, lon: -172, nombre: "marruecos" },
+            { lat: 40, lon: 40, nombre: "japon" },
+        ];
+    
+        const gltfLoader = new THREE.GLTFLoader();
+    
+        // Cargar modelos de banderas
+        locations.forEach(({ lat, lon, nombre }) => {
+            const phi = (90 - lat) * (Math.PI / 180);
+            const theta = (lon + 180) * (Math.PI / 180);
+    
+            const x = Math.sin(phi) * Math.cos(theta);
+            const y = Math.cos(phi);
+            const z = Math.sin(phi) * Math.sin(theta);
+    
+            let modelPath = '';
+            if (nombre === "espanya") modelPath = './modelos/bandera_espana_animada.glb';
+            else if (nombre === "australia") modelPath = './modelos/australia.glb';
+            else if (nombre === "mexico") modelPath = './modelos/mexico.glb';
+            else if (nombre === "grecia") modelPath = './modelos/grecia.glb';
+            else if (nombre === "japon") modelPath = './modelos/japon.glb';
+            else if (nombre === "marruecos") modelPath = './modelos/marruecos.glb';
+    
+            gltfLoader.load(modelPath, function(gltf) {
+                const model = gltf.scene;
+                model.position.set(x, y, z);
+                model.scale.set(0.1, 0.1, 0.1);
+                model.lookAt(0, 1, 0);
+                model.userData.nombre = nombre;
+                earthMesh.add(model);
+                markers.push(model);
+            }, undefined, function(error) {
+                console.error("Error al cargar el modelo:", error);
+            });
+        });
+    
+        // Añadir nave espacial en órbita
+        let spaceship;
+        const pivot = new THREE.Object3D();
+        earthMesh.add(pivot);
+    
+        gltfLoader.load('./modelos/nave.glb', function(gltf) {
+            spaceship = gltf.scene;
+            spaceship.scale.set(0.0005, 0.0005, 0.0005);
+            spaceship.position.set(2, 0, 0); // Posición a la derecha de la Tierra
+            pivot.add(spaceship);
+        }, undefined, function(error) {
+            console.error("Error al cargar la nave espacial:", error);
+        });
+
+        // Luz principal
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(5, 3, 5);
+        scene.add(light);
+
+        // Luz secundaria
+        const light2 = new THREE.DirectionalLight(0xffffff, 0.8); // luz más suave
+        light2.position.set(-5, -3, -5);
+        scene.add(light2);
+
+    
+        camera.position.z = 3;
+    
+        let earthRotationSpeed = 0.002;
+        let cloudsRotationSpeed = 0.001;
+    
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                earthRotationSpeed += 0.001;
+                cloudsRotationSpeed += 0.0005;
+            } else if (event.key === 'ArrowLeft') {
+                earthRotationSpeed = Math.max(0.001, earthRotationSpeed - 0.001);
+                cloudsRotationSpeed = Math.max(0.0005, cloudsRotationSpeed - 0.0005);
+            }
+        });
+    
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let cameraTarget = null;
+    
+        renderer.domElement.addEventListener('click', onClick, false);
+    
+        function findNombre(obj) {
+            while (obj && !obj.userData.nombre && obj.parent) {
+                obj = obj.parent;
+            }
+            return obj?.userData?.nombre;
+        }
+    
+        function onClick(event) {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(markers, true);
+    
+            if (intersects.length > 0) {
+                const target = intersects[0].object.getWorldPosition(new THREE.Vector3());
+                const destino = findNombre(intersects[0].object);
+    
+                if (destino) {
+                    moveCameraTo(target, destino);
+                } 
+            }
+        }
+    
+        function moveCameraTo(targetPosition, restaurante) {
+            cameraTarget = targetPosition.clone().normalize().multiplyScalar(2);
+            setTimeout(() => {
+                window.location.href = `Reservar.html?restaurante=${restaurante}`;
+            }, 1500);
+        }
+    
+        // Variables para el movimiento
+        let isMouseDown = false;
+        let startX = 0;
+        let startY = 0;
+    
+        document.addEventListener('mousedown', (event) => {
+            isMouseDown = true;
+            startX = event.clientX;
+            startY = event.clientY;
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            if (isMouseDown) {
+                const deltaX = event.clientX - startX;
+                const deltaY = event.clientY - startY;
+
+                // Ajustar la rotación de la Tierra y las nubes según el movimiento del ratón
+                earthMesh.rotation.x += deltaY * 0.005;  // Rotación hacia arriba/abajo
+                earthMesh.rotation.y += deltaX * 0.005;  // Rotación hacia izquierda/derecha
+                cloudsMesh.rotation.x += deltaY * 0.005;  // Rotación de las nubes hacia arriba/abajo
+                cloudsMesh.rotation.y += deltaX * 0.005;  // Rotación de las nubes hacia izquierda/derecha
+                
+                startX = event.clientX;
+                startY = event.clientY;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isMouseDown = false;
+        });
+    
+        function animate() {
+            requestAnimationFrame(animate);
+    
+            earthMesh.rotation.y += earthRotationSpeed;
+            cloudsMesh.rotation.y += cloudsRotationSpeed;
+    
+            if (pivot) pivot.rotation.y += 0.008; // Movimiento orbital de la nave
+    
+            if (cameraTarget) {
+                camera.position.lerp(cameraTarget, 0.05);
+                camera.lookAt(0, 0, 0);
+                if (camera.position.distanceTo(cameraTarget) < 0.01) cameraTarget = null;
+            }
+    
+            renderer.render(scene, camera);
+        }
+    
+        animate();
+    </script>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+
+    <footer>
+        <div class="contenedor">
+            <div class="creditos">
+                <div class="section">
+                    <h3>EXPERIENCIA</h3>
+                    <ul>
+                        <li><a href="PedirDomicilio.html">Reservar</a></li>
+                        <li><a href="Juego.html">Ver cartas</a></li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>RESERVAR A DOMICILIO</h3>
+                    <ul>
+                        <a href="https://www.instagram.com/">
+                            <img class="redes" src="./img/insta.avif" alt="Instagram">
+                        </a>
+                        <a href="https://twitter.com/?lang=es">
+                            <img class="redes" src="./img/x.avif" alt="Twitter">
+                        </a>
+                        <a href="https://www.facebook.com/?locale=es_ES">
+                            <img class="redes" src="./img/facebook.png" alt="Facebook">
+                        </a>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>MÁS INFORMACIÓN</h3>
+                    <ul>
+                        <li><a href="Contacto.html">Ubicaciones y horarios</a></li>
+                        <li><a href="Preguntas.html">Preguntas frecuentes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

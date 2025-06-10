@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+</head>
+<body>
+    <!--Logo de la página-->
+    <header>
+        <div class="logo">
+            <a href="index.html" style="cursor: pointer">
+                <img src="./img/logo.png" alt="atlas">
+            </a>
+        </div>
+    </header>
+                
+    <!--Menú desplegable-->
+    <div class="topnav">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div id="myLinks">
+            <a href="PedirDomicilio.html">Reservar</a>
+            <a href="Juego.html">Ver cartas</a>
+            <a href="Contacto.html">Contacto</a>
+            <a href="AcercaDe.html">Sobre nosotros</a>
+        </div>
+    </div>
+
+    <!--Estructura central de la página-->
+    <div class="contacto">
+        <h2>¡Contáctanos!</h2><br> 
+        <p>Estamos aquí para ayudarte a hacer que tu experiencia sea extraordinaria. </p>
+        <p>No dudes en ponerte en contacto con nosotros para consultas o cualquier otra pregunta que puedas tener.</p><br>
+
+        <h2>Información de Contacto:</h2><br>
+        <p>📍 Dirección: Avinguda de l'Universitat, 46100 Burjassot, Valencia</p><br>
+        <p>📞 Teléfono: +123 456 789</p><br>
+        <p>✉️ Correo Electrónico: info@atlas.com</p><br>
+
+        <h2>Horario de Atención:</h2><br>
+        <p>🕰️ Lunes a Viernes: 9:00 AM - 6:00 PM</p><br>
+        <p>🕰️ Sábado: 10:00 AM - 4:00 PM</p><br>
+        <p>🕰️ Domingo: Cerrado</p><br>
+    </div>
+
+    <div class="contacto">
+        <h2>O déjanos un mensaje aquí y te responderemos lo antes posible:</h2><br>  
+          
+        <form action="/submit" onsubmit="Enviar(); return false;">
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" required><br>
+
+            <label for="apellido">Apellido:</label><br>
+            <input type="text" id="apellido" name="apellido" required><br>
+
+            <label for="email">Correo Electrónico:</label><br>
+            <input type="email" id="email" name="email" required><br>    
+
+            <label for="mensaje">Mensaje:</label><br>
+            <textarea id="mensaje" name="mensaje" rows="10" required></textarea><br><br>
+
+            <button class="botones">Enviar</button>
+        </form>
+    </div>
+       
+    <!-- Mapa de ubicación -->
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+
+    <!--Pie de página-->
+    <footer>
+        <div class="contenedor">
+            <div class="creditos">
+                <div class="section">
+                    <h3>EXPERIENCIA</h3>
+                    <ul>
+                        <li><a href = "PedirDomicilio.html">Reservar</a></li>
+                        <li><a href = "Juego.html">Ver cartas</a></li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>CONTACTA</h3>
+                    <ul>
+                        <a href="https://www.instagram.com/" style="cursor: pointer">
+                            <img class="redes" src="./img/insta.avif" alt="Instagram">
+                        </a>
+                        <a href="https://twitter.com/?lang=es" style="cursor: pointer">
+                            <img class="redes" src="./img/x.avif" alt="Twitter">
+                        </a>
+                        <a href="https://www.facebook.com/?locale=es_ES" style="cursor: pointer">
+                            <img class="redes" src="./img/facebook.png" alt="Facebook">
+                        </a>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>MÁS INFORMACIÓN</h3>
+                    <ul>
+                        <li><a href="Contacto.html">Ubicaciones y horarios</a></li>
+                        <li><a href="Preguntas.html">Preguntas frecuentes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+		function Enviar (){
+			alert("¡El mensaje ha sido enviado!");
+            window.location.reload();
+		}
+        function myFunction() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>  
+
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin="">
+
+        var map = L.map('map').setView([39.51292152613561, -0.4246747760731787], 12);
+    </script>  
+
+    <script>
+        var map = L.map('map').setView([39.51292152613561, -0.4246747760731787], 12);
+        var marker = L.marker([39.51292152613561, -0.4246747760731787]).addTo(map);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);   
+    </script>
+
+
+</body>
+</html>
